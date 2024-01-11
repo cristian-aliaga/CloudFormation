@@ -1,9 +1,28 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: >
-  Stack DevOps Lab EC2.
-Resources: 
-  WebServerEC2DevOpsLAB001:
+  Stack DevOps Lab.
+Resources:
+  WebServer:
     Type: 'AWS::EC2::Instance'
-    Properties: {
+    Properties: 
       ImageId: "ami-0cd3c7f72edd5b06d"
-    }
+      KeyName: "keypair-Lab-DevOps"
+      InstanceType: "t3.micro"
+      SecurityGroupIds: 
+        - Ref: SecurityGroupSSH
+
+  SecurityGroupSSH:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "SecurityGroup SSH Access"
+      VpcId: "vpc-04c00560fba0e11ba"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
