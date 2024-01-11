@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Stack DevOps Lab EC2.
+Resources: 
+  WebServerEC2DevOpsLAB001:
+    Type: 'AWS::EC2::Instance'
+    Properties: {
+      ImageId: "ami-0cd3c7f72edd5b06d"
+    }
